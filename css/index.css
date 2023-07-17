@@ -1,0 +1,31 @@
+body {
+    background: linear-gradient(45deg, #1B1F37, #2A1E37);
+    color: white;
+    font-style: italic;
+}
+
+
+.color {
+    color: #9176c7 !important;
+
+}
+
+.btn1 {
+    background-color: transparent !important;
+    border-color: #9176c7;
+    color: white;
+}
+
+.btn1:hover {
+    color: #9176c7 !important;
+    border: #9176c7 solid 1px;
+
+}
+
+.btn2{
+    color: white;
+}
+.btn2:hover{
+    background-color: transparent !important;
+    color: red;
+}
