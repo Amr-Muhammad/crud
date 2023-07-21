@@ -4,6 +4,33 @@ body {
     font-style: italic;
 }
 
+h1 {
+
+    color: transparent;
+    background: linear-gradient(to left, #4a1b5a, #130717, #600421, #501024,#440116 );
+
+    background-clip: text;
+    -webkit-background-clip: text;
+
+    background-size: 200% 200%;
+    -webkit-background-size: 200% 200%;
+
+    animation: animate infinite linear 3s;
+    -webkit-text-stroke: 3px rgb(115, 0, 115);
+
+}
+
+@keyframes animate {
+
+    100% {
+        background-position: 0% 200%;
+    }
+
+    0% {
+        background-position: 200% 0%;
+    }
+
+}
 
 .color {
     color: #9176c7 !important;
@@ -22,10 +49,11 @@ body {
 
 }
 
-.btn2{
+.btn2 {
     color: white;
 }
-.btn2:hover{
+
+.btn2:hover {
     background-color: transparent !important;
     color: red;
 }

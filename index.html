@@ -15,12 +15,17 @@
 
     <div class="container  py-5 px-5">
 
+        <h1 class="text-center fa-6x">CRUD System</h1>
+
         <form action="">
+
             <label for="productName">Product Name</label>
-            <input type="text" class="form-control mb-4" id="productName">
+            <input onkeyup="checkProductName()" type="text" class="form-control" id="productName">
+            <div id="regexName" class="alert alert-danger mb-4">Enter Valid Name</div>
 
             <label for="productPrice">Product Price</label>
-            <input type="number" class="form-control mb-4" id="productPrice">
+            <input onkeyup="checkProductPrice()" type="number" class="form-control" id="productPrice">
+            <div id="regexPrice" class="alert alert-danger mb-4">Enter Valid Price</div>
 
             <label for="ProductCategory">Product Category</label>
             <select class="form-select mb-4" id="ProductCategory">
@@ -37,7 +42,8 @@
             <button id="edit" onclick="editProducts()" type="button"
                 class="btn1 btn btn-outline-info me-3 px-4">Edit</button>
 
-            <button id="addProductelement" onclick="addProduct()" type="button" class="btn1 btn btn-outline-info me-3">Add
+            <button id="addProductelement" onclick="addProduct()" type="button"
+                class="btn1 btn btn-outline-info me-3">Add
                 Product</button>
             <button type="reset" class="btn2 btn btn-outline-danger">Clear Form</button>
 
@@ -46,11 +52,11 @@
         <input onkeyup="searchProducts()" class="my-5 w-50 mx-auto form-control"
             placeholder="Search Name or Category...." type="text" id="searchInput">
 
-        <table class="table table-dark table-bordered table-striped text-center">
+        <table class="table table-dark table-bordered table-striped text-cente">
 
             <thead>
                 <tr>
-                    <th class="color">Index</th>
+                    <th class="color text-center">Index</th>
                     <th>Product Name</th>
                     <th>Product Price</th>
                     <th>Product Category</th>

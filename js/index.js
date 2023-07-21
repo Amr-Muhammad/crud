@@ -9,6 +9,9 @@ var temp = ""
 var amr = 0
 
 document.getElementById("edit").style.display = "none"
+document.getElementById("regexName").style.display = "none"
+document.getElementById("regexPrice").style.display = "none"
+
 
 if (localStorage.getItem("Products") != null) {
     productsArray = JSON.parse(localStorage.getItem("Products"));
@@ -16,24 +19,29 @@ if (localStorage.getItem("Products") != null) {
 }
 
 function addProduct() {
-    var product = {
-        name: productNameInput.value,
-        price: productPriceInput.value,
-        category: ProductCategoryInput.value,
-        description: ProductDescriptionInput.value,
+    if (checkProductName() == true && checkProductPrice() == true) {
+
+        var product = {
+            name: productNameInput.value,
+            price: productPriceInput.value,
+            category: ProductCategoryInput.value,
+            description: ProductDescriptionInput.value,
+        }
+
+        productsArray.push(product);
+        localStorage.setItem("Products", JSON.stringify(productsArray))
+        displayProduct(productsArray);
+        clearForm();
+
     }
 
-    productsArray.push(product);
-    localStorage.setItem("Products", JSON.stringify(productsArray))
-    displayProduct(productsArray);
-    clearForm();
 }
 
 function displayProduct(arrayParameter) {
     var temp = ""
     for (var i = 0; i < arrayParameter.length; i++) {
         temp = temp + `<tr>
-    <td class = "color">${i}</td>
+    <td class = "color text-center">${i}</td>
     
     <td>${(arrayParameter[i].name.charAt(0).toUpperCase() + arrayParameter[i].name.slice(1).toLowerCase()).replace((searchInput.value.charAt(0).toUpperCase() + searchInput.value.slice(1).toLowerCase()), `<span class="bg-info">${(searchInput.value.charAt(0).toUpperCase() + searchInput.value.slice(1).toLowerCase())}</span>`)
             }</td >
@@ -43,7 +51,7 @@ function displayProduct(arrayParameter) {
             }</td >
     <td>${(arrayParameter[i].description.charAt(0).toUpperCase() + arrayParameter[i].description.slice(1).toLowerCase()).replace((searchInput.value.charAt(0).toUpperCase() + searchInput.value.slice(1).toLowerCase()), `<span class="bg-info">${(searchInput.value.charAt(0).toUpperCase() + searchInput.value.slice(1).toLowerCase())}</span>`)
             }</td >
-    <td> <button onclick="update(${i})" class="bg-color btn bg-warning"><i class="fa-solid fa-pen-to-square"></i></button></td>
+    <td> <a href="#" onclick="update(${i})" class="bg-color btn bg-warning"><i class="fa-solid fa-pen-to-square"></i></a></td>
     <td> <button onclick="deleteProduct(${i})" class="btn bg-danger"><i class="fa-solid fa-trash"></i></button></td>
     </tr > `
     }
@@ -89,7 +97,6 @@ function clearForm() {
 
 function editProducts() {
 
-
     document.getElementById("addProductelement").style.display = "inline-block";
     document.getElementById("edit").style.display = "none";
 
@@ -107,7 +114,42 @@ function editProducts() {
 
 
 
- //! (arrayParameter[i].name.charAt(0).toUpperCase() + arrayParameter[i].name.slice(1).toLowerCase())
- //? Gamda awi
+//! lma ados 3la update y3ml scroll up w y focus el screen
+//? lma a3ml search 3la 7aga w agrb ams7 aw a edit el index elly shaylo el zrayr byt8yr 
+//! ezay fi goz2 el display lma a search 3la 7aga mn nos elkelma y3mlha replace brdo blon mo5tlf
 
- //! lma ados 3la update y3ml scroll up w y focus el screen
+
+
+function checkProductName() {
+
+    var regexName = /^[A-Z][a-z]{3,8}[0-9]{0,2}$/
+
+    if (regexName.test(productNameInput.value) == true) {
+
+        document.getElementById("regexName").style.display = "none"
+
+        return true;
+    }
+    else {
+        document.getElementById("regexName").style.display = "block"
+        return false;
+    }
+
+}
+
+
+
+function checkProductPrice() {
+
+    var regexPrice = /^[0-9]{3,6}$/
+
+    if (regexPrice.test(productPriceInput.value) == true) {
+        document.getElementById("regexPrice").style.display = "none"
+        return true;
+    }
+    else {
+        document.getElementById("regexPrice").style.display = "block"
+        return false;
+    }
+}
+
